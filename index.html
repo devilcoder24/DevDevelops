@@ -43,57 +43,126 @@
 
 <div class="modal" id="modal"><div class="shade"></div><div class="modalbox"><button class="close">×</button><p class="eyebrow">THEME PREVIEW</p><h2 id="modalTitle">Sample Design</h2><div class="modalview"><small>DEV DEVELOPS</small><strong>Your next<br><i>digital story.</i></strong><a id="exploreTheme" href="#">Explore →</a></div><p>This sample direction can be adapted with your content, imagery, colors and sections.</p><a class="btn dark" id="chooseTheme" href="#">Choose this direction</a></div></div>
 <script>
-const modal = document.querySelector('#modal');
-const title = document.querySelector('#modalTitle');
-const exploreTheme = document.querySelector('#exploreTheme');
-const chooseTheme = document.querySelector('#chooseTheme');
+document.addEventListener("DOMContentLoaded", function () {
 
-document.querySelectorAll('[data-theme]').forEach(button => {
-    button.onclick = () => {
+    /* ==========================
+       MODAL ELEMENTS
+    ========================== */
 
-        // Get theme name and webpage link
-        const themeName = button.dataset.theme;
-        const themeLink = button.dataset.link;
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const exploreTheme = document.getElementById("exploreTheme");
+    const chooseTheme = document.getElementById("chooseTheme");
 
-        // Update modal title
-        title.textContent = themeName;
+    /* ==========================
+       THEME PREVIEW BUTTONS
+    ========================== */
 
-        // Update both Explore buttons
-        exploreTheme.href = themeLink;
-        chooseTheme.href = themeLink;
+    const previewButtons = document.querySelectorAll("[data-theme]");
 
-        // Open modal
-        modal.classList.add('open');
-    };
-});
+    previewButtons.forEach(function (button) {
 
-function closeModal() {
-    modal.classList.remove('open');
-}
+        button.addEventListener("click", function (event) {
 
-document.querySelector('.close').onclick = closeModal;
-document.querySelector('.shade').onclick = closeModal;
+            event.preventDefault();
 
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        closeModal();
+            const themeName = button.getAttribute("data-theme");
+            const themeLink = button.getAttribute("data-link");
+
+            // Change modal title
+            modalTitle.textContent = themeName;
+
+            // Change modal links
+            exploreTheme.setAttribute("href", themeLink);
+            chooseTheme.setAttribute("href", themeLink);
+
+            // Open modal
+            modal.classList.add("open");
+
+            // Disable background scrolling
+            document.body.style.overflow = "hidden";
+        });
+
+    });
+
+
+    /* ==========================
+       CLOSE MODAL
+    ========================== */
+
+    function closeModal() {
+
+        modal.classList.remove("open");
+
+        document.body.style.overflow = "";
     }
-});
 
-// Mobile menu
-const menu = document.querySelector('.menu');
-const mobile = document.querySelector('.mobile');
 
-menu.onclick = () => {
-    mobile.classList.toggle('open');
-};
+    const closeButton = document.querySelector(".close");
+    const shade = document.querySelector(".shade");
 
-// Scroll progress
-addEventListener('scroll', () => {
-    let x = document.documentElement.scrollHeight - innerHeight;
-
-    if (x > 0) {
-        document.querySelector('.progress').style.width =
-            (scrollY / x * 100) + '%';
+    if (closeButton) {
+        closeButton.addEventListener("click", closeModal);
     }
+
+    if (shade) {
+        shade.addEventListener("click", closeModal);
+    }
+
+
+    // Close modal with Escape key
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+            closeModal();
+        }
+
+    });
+
+
+    /* ==========================
+       MOBILE MENU
+    ========================== */
+
+    const menu = document.querySelector(".menu");
+    const mobile = document.querySelector(".mobile");
+
+    // IMPORTANT:
+    // .menu doesn't currently exist in your HTML.
+    // Therefore we check if it exists before using it.
+
+    if (menu && mobile) {
+
+        menu.addEventListener("click", function () {
+
+            mobile.classList.toggle("open");
+
+        });
+
+    }
+
+
+    /* ==========================
+       SCROLL PROGRESS
+    ========================== */
+
+    const progress = document.querySelector(".progress");
+
+    window.addEventListener("scroll", function () {
+
+        const totalHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+
+        if (progress && totalHeight > 0) {
+
+            const percentage =
+                (window.scrollY / totalHeight) * 100;
+
+            progress.style.width = percentage + "%";
+
+        }
+
+    });
+
 });
+</script>
