@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Dev Develops — creative digital experiences and website themes.">
+<title>Dev Develops | Creative Digital Experiences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style1.css"></head><body>
+<div class="progress"></div>
+<header><div class="nav">
+<a class="brand" href="#home">
+    <img src="logo.png" alt="Dev Develops Logo" class="brand-logo">
+    <span>Dev <i>Develops</i></span>
+</a>
+<nav><a href="#home">Home</a><a href="#themes">Themes</a><a href="#about">About</a></nav>
+<a class="btn dark navbtn" href="#themes">Explore Themes ↘</a>
+</div><div class="mobile"><a href="#home">Home</a><a href="#themes">Themes</a><a href="#about">About</a></div></header>
+
+<main>
+<section id="home" class="hero"><div>
+<p class="eyebrow">CREATIVE WEB · CLEAN CODE · THOUGHTFUL DESIGN</p>
+<h1><style={font-family: "Libre Baskerville"}>Ideas made<br><i>beautifully digital.</i></h1>
+<p class="intro">Welcome to <strong>Dev Develops</strong> — a creative space for modern, responsive websites that feel as good as they look. Explore our curated themes and find a visual direction for your next digital presence.</p>
+<div class="actions"><a class="btn dark" href="#themes">Explore Various Themes ↓</a><a class="btn light" href="#about">Discover Dev Develops</a></div>
+<p class="note"><span></span> Designed with intention · Built for the web</p>
+</div>
+<div class="art"><div class="circle c1"></div><div class="circle c2"></div><div class="circle c3"></div>
+<div class="browser"><div class="bar"><b>● ● ●</b><span>devdevelops / themes</span></div><div class="screen"><small>SELECT YOUR DIRECTION</small><h2>Your CV,<br><i>Your Portfolio.</i></h2><div class="lines"><<b></b>></b><b></b><b></b></div><div class="blocks"><b></b><b></b><b></b></div></div></div>
+<div class="float f1"><b>03</b><small>Design directions</small></div><div class="float f2"><b>100%</b><small>Responsive</small></div></div></section>
+
+<section id="themes" class="themes"><div class="heading"><div><p class="eyebrow">01 / THEME LIBRARY</p><h2>Explore various <i>themes.</i></h2></div><p>Three distinct visual directions. Choose the mood that best matches your brand, portfolio or professional story.</p></div>
+<div class="grid">
+<article class="card one"><div class="preview"><div class="pnav"><b>STUDIO</b><span>ABOUT · WORK</span></div><div class="pbody"><small>CREATIVE · MINIMAL</small><strong>Make an<br><i>impression.</i></strong><em>View work →</em></div><div class="orb"></div></div><div class="info"><b>01</b><div><small>EDITORIAL · ELEGANT</small><h3>Sample Design 1</h3><p>Refined typography, generous space and a sophisticated editorial feel.</p></div><button data-theme="Sample Design 1" data-link="/Web 1/index.html">Preview ↗</button></div></article>
+<article class="card two"><div class="preview"><div class="pnav"><b>YOUR NAME</b><span>PROFILE · PROJECTS</span></div><div class="pbody"><small>MODERN · PROFESSIONAL</small><strong>Build your<br><i>next chapter.</i></strong><em>Explore →</em></div><div class="panel"></div></div><div class="info"><b>02</b><div><small>MODERN · PROFESSIONAL</small><h3>Sample Design 2</h3><p>Balanced layouts and calm pastel tones for a polished professional presence.</p></div><button data-theme="Sample Design 2" data-link="/Web 2/index.html">Preview ↗</button></div></article>
+<article class="card three"><div class="preview"><div class="pnav"><b>CREATE</b><span>IDEAS · SERVICES</span></div><div class="pbody"><small>BOLD · CREATIVE</small><strong>Think.<br><i>Create.</i></strong><em>Start here →</em></div><div class="star">✦</div></div><div class="info"><b>03</b><div><small>BOLD · CREATIVE</small><h3>Sample Design 3</h3><p>A playful, expressive direction for brands that want to stand out with personality.</p></div><button data-theme="Sample Design 3" data-link="/Web 3/index.html">Preview ↗</button></div></article>
+</div></section>
+
+<section id="about" class="about"><div class="aboutmark">
+    <img src="logo.png" alt="Dev Develops Logo">
+</div><div><p class="eyebrow">02 / DEV DEVELOPS</p><h2>Design that feels <i>personal.</i></h2><p class="lead">Dev Develops brings design and development together to create digital experiences that are clear, memorable and easy to use. Start with a theme and make it yours.</p><div class="principles"><div><b>01</b> Thoughtful layouts</div><div><b>02</b> Responsive experiences</div><div><b>03</b> Clean, maintainable code</div></div></div></section>
+<section class="cta"><p class="eyebrow">READY TO BEGIN?</p><h2>Choose a direction.<br><i>Make it yours.</i></h2><a class="btn dark" href="#themes">Explore All Themes ↗</a></section>
+</main><footer>© 2026 Dev Develops <span>Creative Web · Clean Code · Thoughtful Design</span></footer>
+
+<div class="modal" id="modal"><div class="shade"></div><div class="modalbox"><button class="close">×</button><p class="eyebrow">THEME PREVIEW</p><h2 id="modalTitle">Sample Design</h2><div class="modalview"><small>DEV DEVELOPS</small><strong>Your next<br><i>digital story.</i></strong><a id="exploreTheme" href="#">Explore →</a></div><p>This sample direction can be adapted with your content, imagery, colors and sections.</p><a class="btn dark" id="chooseTheme" href="#">Choose this direction</a></div></div>
+<script>
+const modal = document.querySelector('#modal');
+const title = document.querySelector('#modalTitle');
+const exploreTheme = document.querySelector('#exploreTheme');
+const chooseTheme = document.querySelector('#chooseTheme');
+
+document.querySelectorAll('[data-theme]').forEach(button => {
+    button.onclick = () => {
+
+        // Get theme name and webpage link
+        const themeName = button.dataset.theme;
+        const themeLink = button.dataset.link;
+
+        // Update modal title
+        title.textContent = themeName;
+
+        // Update both Explore buttons
+        exploreTheme.href = themeLink;
+        chooseTheme.href = themeLink;
+
+        // Open modal
+        modal.classList.add('open');
+    };
+});
+
+function closeModal() {
+    modal.classList.remove('open');
+}
+
+document.querySelector('.close').onclick = closeModal;
+document.querySelector('.shade').onclick = closeModal;
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Mobile menu
+const menu = document.querySelector('.menu');
+const mobile = document.querySelector('.mobile');
+
+menu.onclick = () => {
+    mobile.classList.toggle('open');
+};
+
+// Scroll progress
+addEventListener('scroll', () => {
+    let x = document.documentElement.scrollHeight - innerHeight;
+
+    if (x > 0) {
+        document.querySelector('.progress').style.width =
+            (scrollY / x * 100) + '%';
+    }
+});
