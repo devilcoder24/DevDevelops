@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample Design 2</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap');
+:root{
+ --bg:#f6f4ef;--surface:#fffdf9;--surface2:#eeece6;--text:#242321;--muted:#746f67;
+ --accent:#aa8b52;--accent2:#d9cba9;--line:#dfdcd4;--dark:#161616;
+ --shadow:0 24px 70px rgba(25,23,20,.11)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.65}
+a{text-decoration:none;color:inherit}button{font:inherit}
+.top{position:sticky;top:0;z-index:30;background:rgba(255,253,249,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.topin{max-width:1180px;margin:auto;padding:13px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{font-weight:800;letter-spacing:-.03em}.themes{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.theme{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800;cursor:pointer}
+.theme.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.hero{max-width:1180px;margin:auto;padding:82px 22px 62px;display:grid;grid-template-columns:1.35fr .65fr;gap:55px;align-items:center}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+h1,h2,h3{font-family:"Libre Baskerville",serif}h1{font-size:clamp(48px,7.5vw,88px);line-height:.98;letter-spacing:-.055em;margin:12px 0 20px}
+h1 span{color:var(--accent)}.lead{font-size:18px;color:var(--muted);max-width:720px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-weight:800;cursor:pointer}
+.btn.primary{background:var(--dark);color:#fff;border-color:var(--dark)}.btn.gold{background:var(--accent);color:#fff;border-color:var(--accent)}
+.seal{width:270px;height:270px;border-radius:50%;justify-self:end;border:1px solid var(--accent);background:radial-gradient(circle at 50% 45%,var(--surface),var(--surface2));display:grid;place-items:center;box-shadow:var(--shadow);position:relative}
+.seal:before{content:"Your Photo Here";position:absolute;inset:16px;border:1px dashed var(--accent);border-radius:50%;display:grid;place-items:center;font-size:10px;letter-spacing:.12em;color:var(--accent)}
+.seal strong{font-family:"Libre Baskerville",serif;font-size:64px;z-index:1}.seal small{position:absolute;bottom:82px;font-weight:800;z-index:2}
+.nav{max-width:1180px;margin:auto;padding:0 22px 25px;display:flex;gap:7px;flex-wrap:wrap}.nav a{border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:rgba(255,255,255,.5);font-size:12px;font-weight:800}
+.section{max-width:1180px;margin:auto;padding:68px 22px}.head{margin-bottom:25px}.head h2{font-size:clamp(28px,4vw,45px);line-height:1.08;letter-spacing:-.04em;margin:6px 0}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:23px;box-shadow:0 9px 30px rgba(30,25,20,.045);transition:.25s}.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.card h3{margin:0 0 8px;font-size:19px}.tag{display:inline-block;padding:5px 8px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);font-size:10px;font-weight:800;margin:3px}
+.profile{display:grid;grid-template-columns:1fr 1fr;gap:16px}.quote{font-family:"Libre Baskerville",serif;font-size:27px;line-height:1.4}
+.timeline{display:grid;gap:14px}.matter{display:grid;grid-template-columns:180px 1fr;gap:20px}.date{font-size:12px;color:var(--muted);font-weight:800}.matter h3{margin:0;font-size:19px}.matter ul{color:var(--muted);margin:9px 0 0;padding-left:20px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contact a{display:block;padding:12px 0;border-bottom:1px solid var(--line)}
+footer{text-align:center;padding:44px 22px;border-top:1px solid var(--line);color:var(--muted)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:100;place-items:center;padding:20px}.modal.open{display:grid}.modalbox{max-width:650px;width:100%;background:var(--surface);border-radius:24px;padding:28px;box-shadow:0 35px 100px #0005}.close{float:right;border:0;background:var(--surface2);border-radius:50%;width:36px;height:36px;cursor:pointer}
+
+body[data-theme="platinum"]{--bg:#f1f2f2;--surface:#fff;--surface2:#e6e8e8;--text:#222526;--muted:#6c7274;--accent:#92989a;--accent2:#c9cdce;--line:#d9ddde;--dark:#202223}
+
+body[data-theme="champagne"]{--bg:#f8f4ec;--surface:#fffdf8;--surface2:#efe5d3;--text:#29251f;--muted:#786f63;--accent:#b28b52;--accent2:#dfc79e;--line:#e5dac7;--dark:#24211d}
+body[data-theme="graphite"]{--bg:#ececeb;--surface:#f9f9f8;--surface2:#dedfdd;--text:#242424;--muted:#6f706e;--accent:#73726e;--accent2:#b6b5af;--line:#d0d1cf;--dark:#202020}
+body[data-theme="navygold"]{--bg:#f5f6f6;--surface:#fff;--surface2:#e6eaeb;--text:#14212b;--muted:#68747c;--accent:#9b7a42;--accent2:#d8c49a;--line:#dce2e5;--dark:#14212b}
+@media(max-width:800px){.hero,.profile,.contact{grid-template-columns:1fr}.seal{justify-self:start;width:210px;height:210px}.grid{grid-template-columns:1fr}.matter{grid-template-columns:1fr;gap:4px}.topin{align-items:flex-start;flex-direction:column}.themes{justify-content:flex-start}}
+</style>
+</head>
+<body data-theme="ivory">
+<header class="top"><div class="topin">
+  <div class="brand"><style="font-family:Libre Baskerville">Welcome, Please Explore The Various Themes</div>
+  <div class="themes">
+    <button class="theme active" data-theme="ivory">01 Ivory Gold</button>
+  
+    <button class="theme" data-theme="platinum">02 Platinum Silver</button>
+    
+    <button class="theme" data-theme="champagne">03 Soft Champagne</button>
+    <button class="theme" data-theme="graphite">04 Graphite Silver</button>
+    <button class="theme" data-theme="navygold">05 Navy Gold</button>
+  </div>
+</div></header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Advocate · Legal Counsel · Litigation</div>
+    <h1>Alexandra<br><span>Mehta.</span></h1>
+    <p class="lead">A premium digital CV concept for lawyers and senior legal professionals. Designed to communicate authority, discretion, expertise and trust without becoming visually heavy.</p>
+    <div class="actions">
+      <a class="btn primary" href="#practice">Explore practice areas ↓</a>
+      <a class="btn gold" href="#contact">Request consultation</a>
+      <button class="btn" onclick="openModal()">View CV</button>
+    </div>
+  </div>
+  <div class="seal"><strong></strong><small>Your Photo Here</small></div>
+</section>
+
+<nav class="nav">
+<a href="#profile">Profile</a><a href="#practice">Practice Areas</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a>
+</nav>
+
+<section class="section" id="profile">
+<div class="head"><div class="eyebrow">01 · Profile</div><h2>Authority, presented with restraint.</h2></div>
+<div class="profile">
+<div class="card"><div class="quote">“Clear counsel. Strategic thinking. Meticulous representation.”</div></div>
+<div class="card"><h3>Professional Profile</h3><p class="muted">Experienced legal professional focused on commercial advisory, dispute resolution, corporate matters and strategic counsel. This section can be replaced with the lawyer's actual professional summary.</p></div>
+</div>
+</section>
+
+<section class="section" id="practice">
+<div class="head"><div class="eyebrow">02 · Expertise</div><h2>Practice Areas</h2></div>
+<div class="grid">
+<div class="card"><h3>Corporate & Commercial</h3><p class="muted">Contracts, corporate advisory, transactions and business structuring.</p><span class="tag">Corporate</span><span class="tag">Contracts</span></div>
+<div class="card"><h3>Dispute Resolution</h3><p class="muted">Strategic representation, negotiations, arbitration and litigation.</p><span class="tag">Litigation</span><span class="tag">Arbitration</span></div>
+<div class="card"><h3>Real Estate</h3><p class="muted">Due diligence, documentation, transactions and property disputes.</p><span class="tag">Property</span><span class="tag">Due diligence</span></div>
+<div class="card"><h3>Employment Law</h3><p class="muted">Employment agreements, workplace matters and advisory support.</p><span class="tag">Advisory</span></div>
+<div class="card"><h3>Compliance</h3><p class="muted">Regulatory review, governance and risk-focused legal guidance.</p><span class="tag">Governance</span><span class="tag">Risk</span></div>
+<div class="card"><h3>Private Client</h3><p class="muted">Discreet legal support for individuals, families and private businesses.</p><span class="tag">Confidential</span></div>
+</div>
+</section>
+
+<section class="section" id="experience">
+<div class="head"><div class="eyebrow">03 · Career</div><h2>Selected Experience</h2></div>
+<div class="timeline">
+<article class="card matter"><div class="date">2021 — Present<br>Senior Counsel</div><div><h3>Mehta Legal Chambers</h3><ul><li>Advises corporate and private clients on complex commercial matters.</li><li>Leads negotiations and dispute-resolution strategy.</li><li>Manages sensitive matters with a focus on clarity, confidentiality and risk.</li></ul></div></article>
+<article class="card matter"><div class="date">2016 — 2021<br>Associate / Counsel</div><div><h3>Premier Legal Associates</h3><ul><li>Handled commercial agreements, research and client advisory.</li><li>Prepared pleadings, opinions and transaction documentation.</li></ul></div></article>
+<article class="card matter"><div class="date">2013 — 2016<br>Junior Associate</div><div><h3>Legal Practice</h3><ul><li>Supported litigation, drafting, due diligence and legal research.</li></ul></div></article>
+</div>
+</section>
+
+<section class="section" id="credentials">
+<div class="head"><div class="eyebrow">04 · Credentials</div><h2>Education & Credentials</h2></div>
+<div class="grid">
+<div class="card"><h3>LL.M.</h3><p class="muted">Corporate & Commercial Law · [University]</p></div>
+<div class="card"><h3>LL.B.</h3><p class="muted">Bachelor of Laws · [University]</p></div>
+<div class="card"><h3>Bar Council</h3><p class="muted">Enrolled Advocate · [Jurisdiction]</p></div>
+<div class="card"><h3>Professional Memberships</h3><p class="muted">Bar association, arbitration and legal professional memberships.</p></div>
+<div class="card"><h3>Certifications</h3><p class="muted">Specialist certifications can be displayed here.</p></div>
+<div class="card"><h3>Languages</h3><p class="muted">English · Hindi · [Additional languages]</p></div>
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="head"><div class="eyebrow">05 · Contact</div><h2>Confidential consultation.</h2></div>
+<div class="contact">
+<div class="card"><h3>Connect directly</h3><a href="mailto:lawyer@example.com">✉ lawyer@example.com</a><a href="tel:+910000000000">☎ +91 00000 00000</a><a href="#">in LinkedIn profile ↗</a></div>
+<div class="card"><h3>Office</h3><p class="muted">[Chambers / Law Office]<br>[City, State]<br>By appointment</p><div class="actions"><a class="btn gold" href="mailto:lawyer@example.com">Request consultation</a></div></div>
+</div>
+</section>
+</main>
+<footer>Premium Legal CV Concept · Responsive · Interactive · Client Showcase</footer>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><div class="eyebrow">Digital CV</div><h2>Complete Professional Profile</h2><p class="muted">In a finished client website, this button can open a full CV, PDF download, credentials, publications and selected matters while keeping the homepage concise.</p><div class="actions"><button class="btn gold" onclick="window.print()">Print / Save PDF</button><button class="btn" onclick="closeModal()">Close</button></div></div></div>
+<script>
+document.querySelectorAll('.theme').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.theme').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.body.dataset.theme=b.dataset.theme;
+}));
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+</script>
+</body>
+</html>
